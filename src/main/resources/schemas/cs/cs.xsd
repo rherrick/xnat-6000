@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://nrg.wustl.edu/cs" xmlns:cs="http://nrg.wustl.edu/cs" xmlns:xnat="http://nrg.wustl.edu/xnat" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://nrg.wustl.edu/xnat" schemaLocation="../xnat/xnat.xsd"/>
+    <xs:element name="CogAbst" type="cs:abstractCS"/>
+    <xs:element name="CogScr" type="cs:cogScrData"/>
+    <xs:complexType abstract="true" name="abstractCS">
+        <xs:annotation>
+            <xs:appinfo>
+                <xs:documentation>Abstract Instance</xs:documentation>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence minOccurs="0">
+            <xs:element minOccurs="0" name="note">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cogScrData">
+        <xs:annotation>
+            <xs:documentation>CRF Part III: Includes MMSE, CERAD word list, Clock drawing test, Trail making test, COWAT (FAS), VOSP Silhouettes and Clinical dementia rating</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="xnat:subjectAssessorData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="mmse_abst" type="cs:abstractCS"/>
+                    <xs:element minOccurs="0" name="cerad_abst" type="cs:abstractCS"/>
+                    <xs:element minOccurs="0" name="cdt_abst" type="cs:abstractCS"/>
+                    <xs:element minOccurs="0" name="tmt_abst" type="cs:abstractCS"/>
+                    <xs:element minOccurs="0" name="cowat_abst" type="cs:abstractCS"/>
+                    <xs:element minOccurs="0" name="vosp_abst" type="cs:abstractCS"/>
+                    <xs:element minOccurs="0" name="cdr_abst" type="cs:abstractCS"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>
