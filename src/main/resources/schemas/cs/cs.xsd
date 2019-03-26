@@ -1,8 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema targetNamespace="http://nrg.wustl.edu/cs" xmlns:cs="http://nrg.wustl.edu/cs" xmlns:xnat="http://nrg.wustl.edu/xnat" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
     <xs:import namespace="http://nrg.wustl.edu/xnat" schemaLocation="../xnat/xnat.xsd"/>
-    <xs:element name="CogAbst" type="cs:abstractCS"/>
+
     <xs:element name="CogScr" type="cs:cogScrData"/>
+    <xs:element name="Mmse" type="cs:mmseData"/>
+    <xs:element name="Cerad" type="cs:ceradData"/>
+    <xs:element name="Cdt" type="cs:cdtData"/>
+    <xs:element name="Tmt" type="cs:tmtData"/>
+    <xs:element name="Cowat" type="cs:cowatData"/>
+    <xs:element name="Vosp" type="cs:vospData"/>
+    <xs:element name="Cdr" type="cs:cdrData"/>
+    <xs:element name="AbstractCS" type="cs:abstractCS"/>
+
+    <xs:complexType name="cogScrData">
+        <xs:annotation>
+            <xs:documentation>CRF Part III: Includes MMSE, CERAD word list, Clock drawing test, Trail making test, COWAT (FAS), VOSP Silhouettes and Clinical dementia rating</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="xnat:subjectAssessorData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="mmse" type="cs:mmseData"/>
+                    <xs:element minOccurs="0" name="cerad" type="cs:ceradData"/>
+                    <xs:element minOccurs="0" name="cdt" type="cs:cdtData"/>
+                    <xs:element minOccurs="0" name="tmt" type="cs:tmtData"/>
+                    <xs:element minOccurs="0" name="cowat" type="cs:cowatData"/>
+                    <xs:element minOccurs="0" name="vosp" type="cs:vospData"/>
+                    <xs:element minOccurs="0" name="cdr" type="cs:cdrData"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="mmseData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="mmse_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ceradData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cerad_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="cdtData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cdt_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="tmtData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="tmt_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="cowatData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cowat_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="vospData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="vosp_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="cdrData">
+        <xs:complexContent>
+            <xs:extension base="cs:abstractCS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cdr_1" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
     <xs:complexType abstract="true" name="abstractCS">
         <xs:annotation>
             <xs:appinfo>
@@ -19,22 +117,5 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="cogScrData">
-        <xs:annotation>
-            <xs:documentation>CRF Part III: Includes MMSE, CERAD word list, Clock drawing test, Trail making test, COWAT (FAS), VOSP Silhouettes and Clinical dementia rating</xs:documentation>
-        </xs:annotation>
-        <xs:complexContent>
-            <xs:extension base="xnat:subjectAssessorData">
-                <xs:sequence>
-                    <xs:element minOccurs="0" name="mmse_abst" type="cs:abstractCS"/>
-                    <xs:element minOccurs="0" name="cerad_abst" type="cs:abstractCS"/>
-                    <xs:element minOccurs="0" name="cdt_abst" type="cs:abstractCS"/>
-                    <xs:element minOccurs="0" name="tmt_abst" type="cs:abstractCS"/>
-                    <xs:element minOccurs="0" name="cowat_abst" type="cs:abstractCS"/>
-                    <xs:element minOccurs="0" name="vosp_abst" type="cs:abstractCS"/>
-                    <xs:element minOccurs="0" name="cdr_abst" type="cs:abstractCS"/>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
+
 </xs:schema>

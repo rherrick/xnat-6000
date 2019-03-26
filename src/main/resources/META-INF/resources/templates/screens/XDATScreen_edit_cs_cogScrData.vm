@@ -1,0 +1,211 @@
+#* @vtlvariable name="data" type="org.apache.turbine.util.RunData" *#
+#* @vtlvariable name="edit_screen" type="java.lang.String" *#
+#* @vtlvariable name="item" type="org.nrg.xft.XFTItem" *#
+#* @vtlvariable name="link" type="org.apache.turbine.services.pull.tools.TemplateLink" *#
+#* @vtlvariable name="om" type="org.nrg.xdat.om.CsCogscrdata" *#
+#* @vtlvariable name="page" type="org.apache.turbine.util.template.HtmlPageAttributes" *#
+#* @vtlvariable name="project" type="java.lang.String" *#
+#* @vtlvariable name="scoreValues" type="java.util.Collection" *#
+#* @vtlvariable name="turbineUtils" type="org.nrg.xdat.turbine.utils.TurbineUtils" *#
+#* @vtlvariable name="ui" type="org.apache.turbine.services.pull.util.UIManager" *#
+#* @vtlvariable name="vr" type="org.nrg.xft.utils.ValidationUtils.ValidationResults" *#
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifySubjectAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">CogScr Details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD colspan='2'>
+								#parse("/screens/xnat_edit_subjectAssessorData.vm")
+							</TD></TR>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN cs:cogScrData -->
+			<TABLE>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/mmse -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">MMSE</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/mmse/note" $item "" $vr)</TD></TR>
+										<TR><TD>MMSE_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/mmse/mmse_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/mmse/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/mmse -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cerad -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">CERAD</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+                                        <TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/cerad/note" $item "" $vr)</TD></TR>
+                                        <TR><TD>CERAD_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/cerad/cerad_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/cerad/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cerad -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cdt -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">CDT</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+                                        <TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/cdt/note" $item "" $vr)</TD></TR>
+                                        <TR><TD>CDT_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/cdt/cdt_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/cdt/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cdt -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/tmt -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">TMT</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+                                        <TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/tmt/note" $item "" $vr)</TD></TR>
+                                        <TR><TD>TMT_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/tmt/tmt_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/tmt/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/tmt -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cowat -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COWAT</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+                                        <TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/cowat/note" $item "" $vr)</TD></TR>
+                                        <TR><TD>COWAT_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/cowat/cowat_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/cowat/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cowat -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/vosp -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">VOSP</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+                                        <TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/vosp/note" $item "" $vr)</TD></TR>
+                                        <TR><TD>VOSP_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/vosp/vosp_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/vosp/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/vosp -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cdr -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">CDR</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+                                        <TR><TD>Note</TD><TD>#xdatStringBox("cs:cogScrData/cdr/note" $item "" $vr)</TD></TR>
+                                        <TR><TD>CDR_1</TD><TD>#xdatIntegerValueSelectBox("cs:cogScrData/cdr/cdr_1" $item $scoreValues 1 $vr)
+											#xdatHiddenBox("cs:cogScrData/cdr/cs_abstractCS_id" $item "")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cdr -->
+					</TD>
+				</TR>
+			</TABLE>
+<!-- END cs:cogScrData -->
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateSubjectAssessorForm();
+   return false;
+}
+</script>

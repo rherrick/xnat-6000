@@ -1,0 +1,173 @@
+#* @vtlvariable name="data" type="org.apache.turbine.util.RunData" *#
+#* @vtlvariable name="item" type="org.nrg.xft.XFTItem" *#
+#* @vtlvariable name="link" type="org.apache.turbine.services.pull.tools.TemplateLink" *#
+#* @vtlvariable name="om" type="org.nrg.xdat.om.CsCogscrdata" *#
+#* @vtlvariable name="page" type="org.apache.turbine.util.template.HtmlPageAttributes" *#
+#* @vtlvariable name="project" type="java.lang.String" *#
+#* @vtlvariable name="turbineUtils" type="org.nrg.xdat.turbine.utils.TurbineUtils" *#
+#* @vtlvariable name="ui" type="org.apache.turbine.services.pull.util.UIManager" *#
+#* @vtlvariable name="vr" type="org.nrg.xft.utils.ValidationUtils.ValidationResults" *#
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("CogScr Details")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+#if ($turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = $turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = "false")
+#end
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<font face="$ui.sansSerifFonts" size="3"><b>CogScr Details</b></font>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE>
+							<TR><TD>Subject ID</TD><TD>$!item.getStringProperty("cs:cogScrData/subject_ID")</TD></TR>
+						</TABLE>
+					</TD>
+					<TD valign="top" align="right">
+						#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+<!-- BEGIN cs:cogScrData -->
+			<TABLE>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/mmse -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">MMSE</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/mmse/note")</TD></TR>
+										<TR><TD>MMSE_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/mmse/mmse_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/mmse -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cerad -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">CERAD</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/cerad/note")</TD></TR>
+										<TR><TD>CERAD_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/cerad/cerad_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cerad -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cdt -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">CDT</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/cdt/note")</TD></TR>
+										<TR><TD>CDT_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/cdt/cdt_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cdt -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/tmt -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">TMT</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/tmt/note")</TD></TR>
+										<TR><TD>TMT_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/tmt/tmt_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/tmt -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cowat -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">COWAT</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/cowat/note")</TD></TR>
+										<TR><TD>COWAT_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/cowat/cowat_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cowat -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/vosp -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">VOSP</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/vosp/note")</TD></TR>
+										<TR><TD>VOSP_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/vosp/vosp_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/vosp -->
+					</TD>
+				</TR>
+				<TR>
+					<TD align="left" valign="top">
+<!-- BEGIN cs:cogScrData/cdr -->
+						<TABLE>
+							<TR><TH align="left"><BR><font face="$ui.sansSerifFonts" size="2">CDR</font></TH></TR>
+							<TR>
+								<TD align="left" valign="top">
+									<TABLE>
+										<TR><TD>Note</TD><TD>$!item.getStringProperty("cs:cogScrData/cdr/note")</TD></TR>
+										<TR><TD>CDR_1</TD><TD>$!item.getIntegerProperty("cs:cogScrData/cdr/cdr_1")</TD></TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+<!-- END cs:cogScrData/cdr -->
+					</TD>
+				</TR>
+			</TABLE>
+<!-- END cs:cogScrData -->
+		</TD>
+	</TR>
+</TABLE><BR>#parse("/screens/ReportProjectSpecificFields.vm")
